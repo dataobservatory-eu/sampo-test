@@ -1,0 +1,121 @@
+{
+    "id": "musicalworks",
+    "endpoint": {
+        "url": "http://135.181.91.51:3030/finnougric-dataspace/sparql",
+        "useAuth": false,
+        "prefixesFile": "SparqlQueriesPrefixes.js"
+    },
+    "sparqlQueriesFile": "SparqlQueriesMusicalWorks.js",
+    "baseURI": "http://ldf.fi/mmm",
+    "URITemplate": "<BASE_URI>/work/<LOCAL_ID>",
+    "facetClass": "wd:Q23",
+    "frontPageImage": "main_page/works-452x262.jpg",
+    "searchMode": "faceted-search",
+    "enableDynamicLanguageChange": false,
+    "defaultActiveFacets": [
+        "prefLabel"
+    ],
+    "defaultTab": "table",
+    "defaultInstancePageTab": "table",
+    "resultClasses": {
+        "musicalworks": {
+            "paginatedResultsConfig": {
+                "tabID": 0,
+                "component": "ResultTable",
+                "tabPath": "table",
+                "tabIcon": "CalendarViewDay",
+                "propertiesQueryBlock": "musicalworkProperties",
+                "pagesize": 10,
+                "sortBy": null,
+                "sortDirection": null
+            },
+            "instanceConfig": {
+                "propertiesQueryBlock": "musicalworkProperties",
+                "instancePageResultClasses": {
+                    "instancePageTable": {
+                        "tabID": 0,
+                        "component": "InstancePageTable",
+                        "tabPath": "table",
+                        "tabIcon": "CalendarViewDay"
+                    },
+                    "instancePageExport": {
+                        "tabID": 1,
+                        "component": "Export",
+                        "tabPath": "export",
+                        "tabIcon": "CloudDownload",
+                        "pageType": "instancePage"
+                    }
+                }
+            }
+        },
+        "export": {
+            "tabID": 1,
+            "component": "Export",
+            "tabPath": "export",
+            "tabIcon": "CloudDownload",
+            "resultClass": "perspective1",
+            "facetClass": "perspective1"
+        },
+        "knowledgeGraphMetadata": {
+            "sparqlQuery": "knowledgeGraphMetadataQuery",
+            "resultMapper": "makeObjectList"
+        }
+    },
+    "properties": [
+        {
+            "id": "uri",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": true,
+            "numberedList": false,
+            "onlyOnInstancePage": true
+        },
+        {
+            "id": "prefLabel",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 250
+        },
+        {
+            "id": "language",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 250
+        }
+    ],
+    "facets": {
+        "partof": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "wdt:P16",
+            "facetLabelPredicate": "rdfs:label",
+            "facetLabelFilter": "FILTER(LANGMATCHES(LANG(?prefLabel_),'en'))",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortByPredicate": "wdt:P16/rdfs:label",
+            "sortDirection": "desc"
+        },
+        "language": {
+            "containerClass": "ten",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "predicate": "wdt:P80",
+            "facetLabelPredicate": "rdfs:label",
+            "facetLabelFilter": "FILTER(LANGMATCHES(LANG(?prefLabel_),'en'))",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortByPredicate": "wdt:P80/rdfs:label",
+            "sortDirection": "desc"
+        }
+    }
+}
